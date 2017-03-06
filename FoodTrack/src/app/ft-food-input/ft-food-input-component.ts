@@ -6,16 +6,10 @@ import {Food} from '../services/food';
   selector: 'ft-food-input',
   template: 
   `<form (ngSubmit)='submitNewFood()'>
-      <md-input-container>
-        <input mdInput placeholder="Name" [(ngModel)]="food.name" name="newFoodName">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="kCal per 100gr" [(ngModel)]="food.caloriesPer100gr" name="newFoodCaloriesPer100Gr">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="kCal per unit" [(ngModel)]="food.caloriesPerUnit" name="newFoodCaloriesPerUnit">
-      </md-input-container>
-      <button type='submit' md-raised-button>Add</button>
+      <input mdInput placeholder="Name" [(ngModel)]="food.name" name="newFoodName">
+      <input mdInput placeholder="kCal per 100gr" [(ngModel)]="food.caloriesPer100gr" name="newFoodCaloriesPer100Gr">
+      <input mdInput placeholder="kCal per unit" [(ngModel)]="food.caloriesPerUnit" name="newFoodCaloriesPerUnit">
+      <button type='submit'>Add</button>
    </form>
   `,
 })

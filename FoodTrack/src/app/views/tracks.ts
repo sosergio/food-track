@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-   <ft-track-list [date]="trackInputDate"></ft-track-list>
-   <ft-track-input [date]="trackInputDate"></ft-track-input>
-   <button (click)="toggleNewFoodFormIsHidden()">Add new</button>
-   <ft-food-input [hidden]="newFoodFormIsHidden"></ft-food-input>
-   <ft-track-total-list></ft-track-total-list>
+    <div class="area">
+        <ft-track-input [date]="trackInputDate"></ft-track-input>
+        <button (click)="toggleNewFoodFormIsHidden()">Add new</button>
+        <ft-food-input [hidden]="newFoodFormIsHidden"></ft-food-input>
+    </div>
+    <div class="two-cols-container">
+        <ft-track-list class="two-cols-left area" [date]="trackInputDate"></ft-track-list>
+        <ft-track-total-list class="two-cols-right area"></ft-track-total-list>
+    </div>
   `
 })
 export class TracksView  { 

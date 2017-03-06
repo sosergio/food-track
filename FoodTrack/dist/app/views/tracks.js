@@ -19,7 +19,7 @@ var TracksView = (function () {
     }
     TracksView = __decorate([
         core_1.Component({
-            template: "\n   <ft-track-list [date]=\"trackInputDate\"></ft-track-list>\n   <ft-track-input [date]=\"trackInputDate\"></ft-track-input>\n   <button (click)=\"toggleNewFoodFormIsHidden()\">Add new</button>\n   <ft-food-input [hidden]=\"newFoodFormIsHidden\"></ft-food-input>\n   <ft-track-total-list></ft-track-total-list>\n  "
+            template: "\n    <div class=\"area\">\n        <ft-track-input [date]=\"trackInputDate\"></ft-track-input>\n        <button (click)=\"toggleNewFoodFormIsHidden()\">Add new</button>\n        <ft-food-input [hidden]=\"newFoodFormIsHidden\"></ft-food-input>\n    </div>\n    <div class=\"two-cols-container\">\n        <ft-track-list class=\"two-cols-left area\" [date]=\"trackInputDate\"></ft-track-list>\n        <ft-track-total-list class=\"two-cols-right area\"></ft-track-total-list>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], TracksView);

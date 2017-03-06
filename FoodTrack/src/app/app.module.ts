@@ -19,8 +19,7 @@ const appRoutes: Routes = [
   { path: 'tracks', component: TracksView },
   { path: 'food',      component: FoodView },
   { path: '',
-    redirectTo: '/tracks',
-    pathMatch: 'full'
+    component: TracksView
   }
 ];
 

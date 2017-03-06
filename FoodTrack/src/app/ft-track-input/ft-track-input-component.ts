@@ -10,30 +10,17 @@ import {Food} from '../services/food';
   selector: 'ft-track-input',
   template: 
   `
-  <md-menu #appMenu="mdMenu">
-  <button md-menu-item> Settings </button>
-  <button md-menu-item> Help </button>
-</md-menu>
-
-<button md-icon-button [mdMenuTriggerFor]="appMenu">
-   <md-icon>more_vert</md-icon>
-</button>
-
   <form (ngSubmit)='submitNewFoodTrack()'>  
-      <md-input-container>
-        <input mdInput placeholder="Food search" type='text' [formControl]="foodSearchCtrl" name="foodSearchCtrl" />
-      </md-input-container>
-      <md-select placeholder="choose food" [hidden]="!filteredFood || filteredFood.length == 0" [formControl]="foodSearchSelect">
-        <md-option *ngFor="let food of filteredFood" [value]="food.id">{{ food.name }}</md-option>
-      </md-select>
-      <md-input-container>
-        <input mdInput placeholder="Quantity" type='text' [(ngModel)]="track.quantity" name="foodTrackQuantity" />
-      </md-input-container>
-      <md-select placeholder="Type" [(ngModel)]="track.unityOfMeasure" name="foodTrackUnityOfMeasure">
-        <md-option value="gr" selected="selected">gr.</md-option>
-        <md-option value="unit">units</md-option>
-      </md-select>
-      <button type='submit' md-raised-button>Add Track</button>
+      <input placeholder="Food search" type='text' [formControl]="foodSearchCtrl" name="foodSearchCtrl" />     
+      <select placeholder="choose food" [hidden]="!filteredFood || filteredFood.length == 0" [formControl]="foodSearchSelect">
+        <option *ngFor="let food of filteredFood" [value]="food.id">{{ food.name }}</option>
+      </select>
+      <input  placeholder="Quantity" type='text' [(ngModel)]="track.quantityValue" name="foodTrackQuantity" />
+      <select placeholder="Type" [(ngModel)]="track.unityOfMeasure" name="foodTrackUnityOfMeasure">
+        <option value="gr" selected="selected">gr.</option>
+        <option value="unit">units</option>
+      </select>
+      <button type='submit'>Add Track</button>
    </form>{{filteredFood ? filteredFood.length : 'NO'}}`,
 })
 export class FtTrackInputComponent implements OnInit  {
@@ -74,12 +61,8 @@ export class FtTrackInputComponent implements OnInit  {
   }
 
   submitNewFoodTrack = function(){
-    var foodId:number;
-    foodId = this.foodSearchSelect.value;
+    this.track.foodId = this.foodSearchSelect.value;
     this.foodTrackService.addFoodTrack(this.editing);
-
-
-    this.updateList();
   }
 
 }

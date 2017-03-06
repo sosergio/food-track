@@ -27,8 +27,7 @@ var appRoutes = [
     { path: 'tracks', component: tracks_1.TracksView },
     { path: 'food', component: food_1.FoodView },
     { path: '',
-        redirectTo: '/tracks',
-        pathMatch: 'full'
+        component: tracks_1.TracksView
     }
 ];
 var AppModule = (function () {

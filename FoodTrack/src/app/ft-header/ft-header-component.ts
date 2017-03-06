@@ -9,8 +9,7 @@ import { Component } from '@angular/core';
     <a routerLink="/food" routerLinkActive="active">Food</a>
     <a routerLink="/settings" routerLinkActive="active">Food</a>
    </div>
-  `,
-  styleUrls:["/dist/css/ft-header-style.css"]
+  `
 })
 export class FtHeaderComponent{
 

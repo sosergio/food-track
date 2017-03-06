@@ -23,7 +23,7 @@ var FtFoodInputComponent = (function () {
     FtFoodInputComponent = __decorate([
         core_1.Component({
             selector: 'ft-food-input',
-            template: "<form (ngSubmit)='submitNewFood()'>\n      <md-input-container>\n        <input mdInput placeholder=\"Name\" [(ngModel)]=\"food.name\" name=\"newFoodName\">\n      </md-input-container>\n      <md-input-container>\n        <input mdInput placeholder=\"kCal per 100gr\" [(ngModel)]=\"food.caloriesPer100gr\" name=\"newFoodCaloriesPer100Gr\">\n      </md-input-container>\n      <md-input-container>\n        <input mdInput placeholder=\"kCal per unit\" [(ngModel)]=\"food.caloriesPerUnit\" name=\"newFoodCaloriesPerUnit\">\n      </md-input-container>\n      <button type='submit' md-raised-button>Add</button>\n   </form>\n  ",
+            template: "<form (ngSubmit)='submitNewFood()'>\n      <input mdInput placeholder=\"Name\" [(ngModel)]=\"food.name\" name=\"newFoodName\">\n      <input mdInput placeholder=\"kCal per 100gr\" [(ngModel)]=\"food.caloriesPer100gr\" name=\"newFoodCaloriesPer100Gr\">\n      <input mdInput placeholder=\"kCal per unit\" [(ngModel)]=\"food.caloriesPerUnit\" name=\"newFoodCaloriesPerUnit\">\n      <button type='submit'>Add</button>\n   </form>\n  ",
         }), 
         __metadata('design:paramtypes', [food_service_1.FoodService])
     ], FtFoodInputComponent);

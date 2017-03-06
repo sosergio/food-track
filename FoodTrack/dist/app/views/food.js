@@ -14,7 +14,7 @@ var FoodView = (function () {
     }
     FoodView = __decorate([
         core_1.Component({
-            template: "\n    <md-menu #appMenu=\"mdMenu\">\n  <button md-menu-item> Settings </button>\n  <button md-menu-item> Help </button>\n</md-menu>\n\n<button md-icon-button [mdMenuTriggerFor]=\"appMenu\">\n   <md-icon>more_vert</md-icon>\n</button>\n<br/>\n<h2>\nTEST\n</h2>\n   \n  "
+            template: "\n    <ft-food-input class=\"area\"></ft-food-input>\n    <ft-food-list class=\"area\"></ft-food-list>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], FoodView);

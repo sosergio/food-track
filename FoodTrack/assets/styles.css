@@ -1,1 +1,29 @@
-/*@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';*/
+body{
+   
+}
+
+#ft-app{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.area{
+    border:1px solid black;
+    padding:10px 0px;
+}
+
+.table-cell{
+   
+}
+
+main{
+   display: flex;
+}
+
+.two-cols-container{
+    display: flex;
+}
+.two-cols-left,
+.two-cols-right{
+    flex: 1;
+}
