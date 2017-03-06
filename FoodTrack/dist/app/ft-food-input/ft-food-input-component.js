@@ -23,7 +23,7 @@ var FtFoodInputComponent = (function () {
     FtFoodInputComponent = __decorate([
         core_1.Component({
             selector: 'ft-food-input',
-            template: "<form [hidden]=\"newFoodFormIsHidden\" (ngSubmit)='submitNewFood()'>\n      <input type='text' [(ngModel)]=\"food.name\" name=\"newFoodName\"/>\n      <input type='text' [(ngModel)]=\"food.caloriesPer100gr\" name=\"newFoodCaloriesPer100Gr\"/>\n      <input type='text' [(ngModel)]=\"food.caloriesPerUnit\" name=\"newFoodCaloriesPerUnit\"/>\n      <input type='submit' />\n   </form>\n  ",
+            template: "<form (ngSubmit)='submitNewFood()'>\n      <input type='text' [(ngModel)]=\"food.name\" name=\"newFoodName\"/>\n      <input type='text' [(ngModel)]=\"food.caloriesPer100gr\" name=\"newFoodCaloriesPer100Gr\"/>\n      <input type='text' [(ngModel)]=\"food.caloriesPerUnit\" name=\"newFoodCaloriesPerUnit\"/>\n      <input type='submit' />\n   </form>\n  ",
         }), 
         __metadata('design:paramtypes', [food_service_1.FoodService])
     ], FtFoodInputComponent);
