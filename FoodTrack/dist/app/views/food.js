@@ -9,18 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var FtHeaderComponent = (function () {
-    function FtHeaderComponent() {
+var FoodView = (function () {
+    function FoodView() {
     }
-    FtHeaderComponent = __decorate([
+    FoodView = __decorate([
         core_1.Component({
-            selector: 'ft-header',
-            template: "<h1>FootTracker</h1>\n   <div id=\"menu\">\n    <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n    <a routerLink=\"/food\" routerLinkActive=\"active\">Food</a>\n    <a routerLink=\"/settings\" routerLinkActive=\"active\">Food</a>\n   </div>\n  ",
-            styleUrls: ["/dist/css/ft-header-style.css"]
+            template: "\n    <md-menu #appMenu=\"mdMenu\">\n  <button md-menu-item> Settings </button>\n  <button md-menu-item> Help </button>\n</md-menu>\n\n<button md-icon-button [mdMenuTriggerFor]=\"appMenu\">\n   <md-icon>more_vert</md-icon>\n</button>\n<br/>\n<h2>\nTEST\n</h2>\n   \n  "
         }), 
         __metadata('design:paramtypes', [])
-    ], FtHeaderComponent);
-    return FtHeaderComponent;
+    ], FoodView);
+    return FoodView;
 }());
-exports.FtHeaderComponent = FtHeaderComponent;
-//# sourceMappingURL=ft-header-component.js.map
+exports.FoodView = FoodView;
+//# sourceMappingURL=food.js.map

@@ -5,12 +5,13 @@ import { Component } from '@angular/core';
   template: 
   `<h1>FootTracker</h1>
    <div id="menu">
-    <a href="#">Food List</a>
-    <a href="#">Settings</a>
+    <a routerLink="/tracks" routerLinkActive="active">Tracks</a>
+    <a routerLink="/food" routerLinkActive="active">Food</a>
+    <a routerLink="/settings" routerLinkActive="active">Food</a>
    </div>
   `,
   styleUrls:["/dist/css/ft-header-style.css"]
 })
-export class FtHeaderComponent  {
+export class FtHeaderComponent{
 
- }
+}

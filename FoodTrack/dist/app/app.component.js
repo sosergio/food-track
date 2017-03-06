@@ -13,16 +13,11 @@ var food_service_1 = require('./services/food-service');
 var food_track_service_1 = require('./services/food-track-service');
 var AppComponent = (function () {
     function AppComponent() {
-        this.toggleNewFoodFormIsHidden = function () {
-            this.newFoodFormIsHidden = !this.newFoodFormIsHidden;
-        };
-        this.trackInputDate = new Date(2017, 1, 1);
-        this.newFoodFormIsHidden = true;
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'ft-app',
-            template: "\n  <ft-header></ft-header>\n  <main>\n   <ft-track-list [date]=\"trackInputDate\"></ft-track-list>\n   <ft-track-input [date]=\"trackInputDate\"></ft-track-input>\n   <button (click)=\"toggleNewFoodFormIsHidden()\">Add new</button>\n   <ft-food-input [hidden]=\"newFoodFormIsHidden\"></ft-food-input>\n   <ft-track-total-list></ft-track-total-list>\n  </main>\n  ",
+            template: "\n  <md-toolbar color=\"primary\">\n    <span>GameViewer</span>\n  </md-toolbar>\n  <ft-header></ft-header>\n  <main>\n   <router-outlet></router-outlet>\n  </main>\n  ",
             styleUrls: ["/dist/css/app.style.css"],
             providers: [
                 food_service_1.FoodService,

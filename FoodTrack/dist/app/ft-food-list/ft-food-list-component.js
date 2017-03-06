@@ -9,18 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var FtHeaderComponent = (function () {
-    function FtHeaderComponent() {
+var food_service_1 = require('../services/food-service');
+var FtFoodListComponent = (function () {
+    function FtFoodListComponent(_foodService) {
+        this.updateList = function () {
+            this.food = this.foodService.getAllFood();
+        };
+        this.foodService = _foodService;
+        this.updateList();
     }
-    FtHeaderComponent = __decorate([
+    FtFoodListComponent = __decorate([
         core_1.Component({
-            selector: 'ft-header',
-            template: "<h1>FootTracker</h1>\n   <div id=\"menu\">\n    <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n    <a routerLink=\"/food\" routerLinkActive=\"active\">Food</a>\n    <a routerLink=\"/settings\" routerLinkActive=\"active\">Food</a>\n   </div>\n  ",
-            styleUrls: ["/dist/css/ft-header-style.css"]
+            selector: 'ft-food-list',
+            template: "<h2>All</h2> \n   <table>\n   <tr *ngFor=\"let f of food\">\n    <td>{{f.id}}</td>\n    <td>{{f.name}}</td>\n    <td>{{f.caloriesPer100gr}}<td>\n    <td>{{f.caloriesPerUnit}}<td>\n  </table>\n  ",
         }), 
-        __metadata('design:paramtypes', [])
-    ], FtHeaderComponent);
-    return FtHeaderComponent;
+        __metadata('design:paramtypes', [food_service_1.FoodService])
+    ], FtFoodListComponent);
+    return FtFoodListComponent;
 }());
-exports.FtHeaderComponent = FtHeaderComponent;
-//# sourceMappingURL=ft-header-component.js.map
+exports.FtFoodListComponent = FtFoodListComponent;
+//# sourceMappingURL=ft-food-list-component.js.map

@@ -11,13 +11,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var food_track_service_1 = require('../services/food-track-service');
 var FtTrackListComponent = (function () {
-    function FtTrackListComponent(foodTrackService) {
-        this.totals = foodTrackService.getFoodTrackTotals(null, null);
+    function FtTrackListComponent(_foodTrackService) {
+        this.updateList = function () {
+            this.tracks = this.foodTrackService.getFoodTrackByDay(this.selectedDate);
+        };
+        this.foodTrackService = _foodTrackService;
     }
+    FtTrackListComponent.prototype.ngOnInit = function () {
+        this.updateList();
+    };
+    __decorate([
+        core_1.Input('date'), 
+        __metadata('design:type', Date)
+    ], FtTrackListComponent.prototype, "selectedDate", void 0);
     FtTrackListComponent = __decorate([
         core_1.Component({
             selector: 'ft-track-list',
-            template: "<h2>Last 6 days</h2>\n   <table>\n   <tr *ngFor=\"let total of totals\">\n    <td>{{total.id}}</td>\n    <td>{{total.date | date}}<td>\n    <td>{{total.calories}}<td>\n  </table>\n  ",
+            template: "<h2>{{selectedDate | date}}</h2> \n   <table>\n   <tr *ngFor=\"let track of tracks\">\n    <td>{{track.id}}</td>\n    <td>{{track.food.name}}</td>\n    <td>{{track.date | date}}<td>\n    <td>{{track.quantityValue}}{{track.unityOfMeasure}}<td>\n  </table>\n  ",
         }), 
         __metadata('design:paramtypes', [food_track_service_1.FoodTrackService])
     ], FtTrackListComponent);

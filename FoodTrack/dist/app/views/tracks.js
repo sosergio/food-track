@@ -9,18 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var FtHeaderComponent = (function () {
-    function FtHeaderComponent() {
+var TracksView = (function () {
+    function TracksView() {
+        this.toggleNewFoodFormIsHidden = function () {
+            this.newFoodFormIsHidden = !this.newFoodFormIsHidden;
+        };
+        this.trackInputDate = new Date(2017, 1, 1);
+        this.newFoodFormIsHidden = true;
     }
-    FtHeaderComponent = __decorate([
+    TracksView = __decorate([
         core_1.Component({
-            selector: 'ft-header',
-            template: "<h1>FootTracker</h1>\n   <div id=\"menu\">\n    <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n    <a routerLink=\"/food\" routerLinkActive=\"active\">Food</a>\n    <a routerLink=\"/settings\" routerLinkActive=\"active\">Food</a>\n   </div>\n  ",
-            styleUrls: ["/dist/css/ft-header-style.css"]
+            template: "\n   <ft-track-list [date]=\"trackInputDate\"></ft-track-list>\n   <ft-track-input [date]=\"trackInputDate\"></ft-track-input>\n   <button (click)=\"toggleNewFoodFormIsHidden()\">Add new</button>\n   <ft-food-input [hidden]=\"newFoodFormIsHidden\"></ft-food-input>\n   <ft-track-total-list></ft-track-total-list>\n  "
         }), 
         __metadata('design:paramtypes', [])
-    ], FtHeaderComponent);
-    return FtHeaderComponent;
+    ], TracksView);
+    return TracksView;
 }());
-exports.FtHeaderComponent = FtHeaderComponent;
-//# sourceMappingURL=ft-header-component.js.map
+exports.TracksView = TracksView;
+//# sourceMappingURL=tracks.js.map
