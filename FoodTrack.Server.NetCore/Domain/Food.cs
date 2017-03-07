@@ -1,6 +1,8 @@
+using FoodTrack.Server.NetCore.Application.Interfaces;
+
 namespace FoodTrack.Server.NetCore.Domain
 {
-    public class Food
+    public class Food:IEntity
     {
         public int Id{get;set;}
         public string Name {get;set;}

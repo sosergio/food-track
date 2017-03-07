@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using FoodTrack.Server.NetCore.Domain;
-using FoodTrack.Server.NetCore.Application;
 using FoodTrack.Server.NetCore.Application.Queries;
 using FoodTrack.Server.NetCore.Persistance;
 using FoodTrack.Server.NetCore.Application.Interfaces;

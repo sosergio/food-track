@@ -14,9 +14,16 @@
         },
         "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
         "Microsoft.AspNetCore.Mvc": "1.0.0",
-        "Microsoft.AspNetCore.Mvc.Core": "1.0.0"
+        "Microsoft.AspNetCore.Mvc.Core": "1.0.0",
+        "MongoDB.Driver":"2.4.2",
+        "MongoDB.Driver.Core":"2.4.2",
+        "MongoDB.Bson":"2.4.2"
       },
       "imports": "dnxcore50"
     }
+  },
+  "MongoConnection": {
+    "ConnectionString": "mongodb://admin:abc123!@localhost",
+    "Database": "FoodTrack"
   }
 }
