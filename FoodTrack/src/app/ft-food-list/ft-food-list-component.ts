@@ -1,14 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { FoodService} from '../services/food-service';
 import { Food} from '../services/food';
+import { Observable }     from 'rxjs/Observable';
 
 @Component({
   selector: 'ft-food-list',
   template: 
   `<h2>All</h2> 
    <table>
-   <tr *ngFor="let f of food">
-    <td>{{f.id}}</td>
+   <tr *ngFor="let f of food | async">
+    <td>{{f.identifier}}</td>
     <td>{{f.name}}</td>
     <td>{{f.caloriesPer100gr}}<td>
     <td>{{f.caloriesPerUnit}}<td>
@@ -16,7 +17,7 @@ import { Food} from '../services/food';
   `,
 })
 export class FtFoodListComponent  {
-  food:Array<Food>;
+  food:Observable<Food[]>;
   foodService:FoodService;
   
   constructor(_foodService:FoodService){
@@ -25,6 +26,15 @@ export class FtFoodListComponent  {
   }
 
   updateList = function(){
-    this.food = this.foodService.getAllFood();
+    //this.food = this.foodService.getAllFood();
+    this.food = this.foodService.getAsync();
+          /*.subscribe(food => {
+            this.food = food;
+          }, 
+          err => {
+            // Log errors if any
+            console.log(err);
+          });*/
+                    
   }
 }

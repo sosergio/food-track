@@ -9,8 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var Observable_1 = require('rxjs/Observable');
+// Import RxJs required methods
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/catch');
 var FoodService = (function () {
-    function FoodService() {
+    function FoodService(http) {
+        this.http = http;
+        this._http = http;
         this.food = [
             { id: 1, name: "banana", caloriesPer100gr: 0, caloriesPerUnit: 100 },
             { id: 2, name: "seasoning", caloriesPer100gr: 290, caloriesPerUnit: 0 },
@@ -18,6 +25,14 @@ var FoodService = (function () {
             { id: 4, name: "almond", caloriesPer100gr: 450, caloriesPerUnit: 100 }
         ];
     }
+    FoodService.prototype.getAsync = function () {
+        //let bodyString = JSON.stringify(body); // Stringify payload
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
+        return this._http.get("http://localhost:5000/api/Food")
+            .map(function (response) { return response.json(); })
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
+    };
     FoodService.prototype.getAllFood = function () {
         return this.food;
     };
@@ -38,7 +53,7 @@ var FoodService = (function () {
     };
     FoodService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], FoodService);
     return FoodService;
 }());

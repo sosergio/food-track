@@ -13,7 +13,15 @@ var food_service_1 = require('../services/food-service');
 var FtFoodListComponent = (function () {
     function FtFoodListComponent(_foodService) {
         this.updateList = function () {
-            this.food = this.foodService.getAllFood();
+            //this.food = this.foodService.getAllFood();
+            this.food = this.foodService.getAsync();
+            /*.subscribe(food => {
+              this.food = food;
+            },
+            err => {
+              // Log errors if any
+              console.log(err);
+            });*/
         };
         this.foodService = _foodService;
         this.updateList();
@@ -21,7 +29,7 @@ var FtFoodListComponent = (function () {
     FtFoodListComponent = __decorate([
         core_1.Component({
             selector: 'ft-food-list',
-            template: "<h2>All</h2> \n   <table>\n   <tr *ngFor=\"let f of food\">\n    <td>{{f.id}}</td>\n    <td>{{f.name}}</td>\n    <td>{{f.caloriesPer100gr}}<td>\n    <td>{{f.caloriesPerUnit}}<td>\n  </table>\n  ",
+            template: "<h2>All</h2> \n   <table>\n   <tr *ngFor=\"let f of food | async\">\n    <td>{{f.identifier}}</td>\n    <td>{{f.name}}</td>\n    <td>{{f.caloriesPer100gr}}<td>\n    <td>{{f.caloriesPerUnit}}<td>\n  </table>\n  ",
         }), 
         __metadata('design:paramtypes', [food_service_1.FoodService])
     ], FtFoodListComponent);
