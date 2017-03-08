@@ -19,7 +19,7 @@ namespace FoodTrack.Server.NetCore.Persistance
         public int Create(Domain.FoodTrack item)
         {
             var nextId = (int)collection.Count(x => x.Identifier != 0);
-            item.Identifier = nextId;
+            item.Identifier = nextId + 1;
             collection.InsertOne(item);
             return nextId;
         }

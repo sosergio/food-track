@@ -43,12 +43,19 @@ namespace FoodTrack.Server.NetCore.Service
         [HttpPost]
         public IActionResult Create([FromBody] Application.Food.CreateFoodModel item)
         {
-            if (item == null)
+            try
             {
-                return BadRequest();
+                if (item == null)
+                {
+                    return BadRequest();
+                }
+                var id = _foodAppService.CreateFood(item);
+                return CreatedAtRoute("GetFood", new { controller = "Food", id = id }, item);
             }
-            var id = _foodAppService.CreateFood(item);
-            return CreatedAtRoute("GetFood", new { controller = "Food", id = id }, item);
+            catch(Exception exc)
+            {
+                return new ObjectResult(exc);
+            }
         }
 
         [HttpDelete("{id}")]
