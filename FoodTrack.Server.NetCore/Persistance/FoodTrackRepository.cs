@@ -18,25 +18,25 @@ namespace FoodTrack.Server.NetCore.Persistance
         }
         public int Create(Domain.FoodTrack item)
         {
-            var nextId = (int)collection.Count(x => x.Id != 0);
-            item.Id = nextId;
+            var nextId = (int)collection.Count(x => x.Identifier != 0);
+            item.Identifier = nextId;
             collection.InsertOne(item);
             return nextId;
         }
 
         public void Delete(int id)
         {
-            collection.DeleteOne(x=> x.Id == id);
+            collection.DeleteOne(x=> x.Identifier == id);
         }
 
         public IList<Domain.FoodTrack> GetAll()
         {
-            return collection.Find(x => x.Id != 0, new FindOptions()).ToList();
+            return collection.Find(x => x.Identifier != 0, new FindOptions()).ToList();
         }
 
         public Domain.FoodTrack GetById(int id)
         {
-            return collection.Find(x => x.Id != id, new FindOptions()).SingleOrDefault();
+            return collection.Find(x => x.Identifier != id, new FindOptions()).SingleOrDefault();
         }
 
         public IList<Domain.FoodTrack> SearchFor(Expression<Func<Domain.FoodTrack, bool>> predicate)

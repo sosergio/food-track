@@ -19,25 +19,25 @@ namespace FoodTrack.Server.NetCore.Persistance
         }
         public int Create(Food item)
         {
-            var nextId = (int)collection.Count(x => x.Id != 0);
-            item.Id = nextId;
+            var nextId = (int)collection.Count(x => x.Identifier != 0);
+            item.Identifier = nextId;
             collection.InsertOne(item);
             return nextId;
         }
 
         public void Delete(int id)
         {
-            collection.DeleteOne(x=> x.Id == id);
+            collection.DeleteOne(x=> x.Identifier == id);
         }
 
         public IList<Food> GetAll()
         {
-            return collection.Find(x => x.Id != 0, new FindOptions()).ToList();
+            return collection.Find(x => x.Identifier != 0, new FindOptions()).ToList();
         }
 
         public Food GetById(int id)
         {
-            return collection.Find(x => x.Id != id, new FindOptions()).SingleOrDefault();
+            return collection.Find(x => x.Identifier != id, new FindOptions()).SingleOrDefault();
         }
 
         public IList<Food> SearchFor(Expression<Func<Food, bool>> predicate)

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FoodTrack.Server.NetCore.Persistance;
 using FoodTrack.Server.NetCore.Application.Food;
+using System;
 
 namespace FoodTrack.Server.NetCore.Service
 {
@@ -16,9 +17,16 @@ namespace FoodTrack.Server.NetCore.Service
         }
 
         [HttpGet]
-        public IEnumerable<Domain.Food> GetAll()
+        public IActionResult GetAll()
         {
-            return _foodAppService.GetAllFood();
+            try
+            {
+               return new ObjectResult(_foodAppService.GetAllFood());
+            }
+            catch(Exception exc)
+            {
+                return new ObjectResult(exc);
+            }
         }
 
         [HttpGet("{id}", Name = "GetFood")]

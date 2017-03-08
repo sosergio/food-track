@@ -21,9 +21,5 @@
       },
       "imports": "dnxcore50"
     }
-  },
-  "MongoConnection": {
-    "ConnectionString": "mongodb://admin:abc123!@localhost",
-    "Database": "FoodTrack"
   }
 }

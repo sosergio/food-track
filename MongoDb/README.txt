@@ -5,7 +5,7 @@ RUNNING MONGO DB ON WINDOWS
 3 - Connect to MongoDb on port 27017 with: "> mongod --dbpath [Path_To_Solution_Directory]\food-track\MongoDb\data"
 
 To connect to database in command prompt
-- Open another terminal prompt and connect to the default database with: "> mongo"
+- Open another terminal prompt and connect to the default database with: "C:\Program Files\MongoDB\Server\[Version_Number]\bin> mongo"
 
 To create a database
 - in command prompt: ">use [DbName]"
