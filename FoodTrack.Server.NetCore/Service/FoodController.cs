@@ -1,40 +1,30 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using FoodTrack.Server.NetCore.Application.Queries;
 using FoodTrack.Server.NetCore.Persistance;
-using FoodTrack.Server.NetCore.Application.Interfaces;
-using FoodTrack.Server.NetCore.Application.Commands;
+using FoodTrack.Server.NetCore.Application.Food;
 
 namespace FoodTrack.Server.NetCore.Service
 {
     [Route("api/[controller]")]
     public class FoodController : Controller
     {
-        private IDatabaseService _databaseService;
-        private Application.Queries.IGetFoodList _getFoodList;
-        private IGetFoodById _getFoodById;
-        private ICreateFood _createFood;
-        private IDeleteFood _deleteFood;
-        
-        public FoodController()
+        private IFoodAppService _foodAppService;
+       
+        public FoodController(IFoodAppService foodAppService)
         {
-            _databaseService = new DatabaseService();
-            _getFoodList = new GetFoodList(_databaseService);
-            _getFoodById = new GetFoodById(_databaseService);
-            _createFood = new CreateFood(_databaseService);
-            _deleteFood = new DeleteFood(_databaseService);
+            _foodAppService = foodAppService;
         }
 
         [HttpGet]
         public IEnumerable<Domain.Food> GetAll()
         {
-            return _getFoodList.Execute();
+            return _foodAppService.GetAllFood();
         }
 
         [HttpGet("{id}", Name = "GetFood")]
         public IActionResult GetById(int id)
         {
-            var item = _getFoodById.Execute(id);
+            var item = _foodAppService.GetFoodById(id);
             if (item == null)
             {
                 return NotFound();
@@ -43,20 +33,20 @@ namespace FoodTrack.Server.NetCore.Service
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Application.Commands.CreateFoodModel item)
+        public IActionResult Create([FromBody] Application.Food.CreateFoodModel item)
         {
             if (item == null)
             {
                 return BadRequest();
             }
-            var id = _createFood.Execute(item);
+            var id = _foodAppService.CreateFood(item);
             return CreatedAtRoute("GetFood", new { controller = "Food", id = id }, item);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-           _deleteFood.Execute(id);
+           _foodAppService.DeleteFood(id);
         }
     }
 }

@@ -11,39 +11,38 @@ namespace FoodTrack.Server.NetCore.Persistance
 {
     public class FoodRepository : IRepository<Domain.Food>
     {
-        //IDatabaseService _database;
-        protected static IMongoClient _client;
-        protected static IMongoDatabase _database;
+        IMongoCollection<Domain.Food> collection;
 
-        public FoodRepository(IDatabaseService databaseService)
+        public FoodRepository(IMongoDatabase dataContext)
         {
-            //_database = databaseService;
-            _client = new MongoClient();
-            _database = _client.GetDatabase("FoodTrackDB");
+            collection = dataContext.GetCollection<Food>("Food");
         }
         public int Create(Food item)
         {
-            throw new NotImplementedException();
+            var nextId = (int)collection.Count(x => x.Id != 0);
+            item.Id = nextId;
+            collection.InsertOne(item);
+            return nextId;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            collection.DeleteOne(x=> x.Id == id);
         }
 
-        public IQueryable<Food> GetAll()
+        public IList<Food> GetAll()
         {
-            throw new NotImplementedException();
+            return collection.Find(x => x.Id != 0, new FindOptions()).ToList();
         }
 
         public Food GetById(int id)
         {
-            throw new NotImplementedException();
+            return collection.Find(x => x.Id != id, new FindOptions()).SingleOrDefault();
         }
 
-        public IQueryable<Food> SearchFor(Expression<Func<Food, bool>> predicate)
+        public IList<Food> SearchFor(Expression<Func<Food, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return collection.Find(predicate).ToList();
         }
 
         public void Update(int id, Food item)
