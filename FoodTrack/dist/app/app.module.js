@@ -14,6 +14,8 @@ var material_1 = require('@angular/material');
 //import 'hammerjs';
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var app_config_1 = require('./app.config');
+var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var food_1 = require('./views/food');
 var tracks_1 = require('./views/tracks');
@@ -30,6 +32,10 @@ var appRoutes = [
         component: tracks_1.TracksView
     }
 ];
+//a way of loading settings before loading the rest of the app
+function configServiceFactory(http, config) {
+    return function () { return config.load(); };
+}
 var AppModule = (function () {
     function AppModule() {
     }
@@ -52,7 +58,16 @@ var AppModule = (function () {
                 ft_food_list_component_1.FtFoodListComponent,
                 food_1.FoodView,
                 tracks_1.TracksView],
-            bootstrap: [app_component_1.AppComponent]
+            bootstrap: [app_component_1.AppComponent],
+            providers: [
+                app_config_1.AppConfig,
+                {
+                    provide: core_1.APP_INITIALIZER,
+                    useFactory: configServiceFactory,
+                    deps: [http_1.Http, app_config_1.AppConfig],
+                    multi: true
+                }
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

@@ -19,8 +19,8 @@ namespace FoodTrack.Server.NetCore.Persistance
         }
         public int Create(Food item)
         {
-            var nextId = (int)collection.Count(x => x.Identifier != 0);
-            item.Identifier = nextId;
+            var nextId = (int)collection.Count(x => true);
+            item.Identifier = nextId + 1;
             collection.InsertOne(item);
             return nextId;
         }
@@ -32,12 +32,12 @@ namespace FoodTrack.Server.NetCore.Persistance
 
         public IList<Food> GetAll()
         {
-            return collection.Find(x => x.Identifier != 0, new FindOptions()).ToList();
+            return collection.Find(x => true, new FindOptions()).ToList();
         }
 
         public Food GetById(int id)
         {
-            return collection.Find(x => x.Identifier != id, new FindOptions()).SingleOrDefault();
+            return collection.Find(x => x.Identifier == id, new FindOptions()).SingleOrDefault();
         }
 
         public IList<Food> SearchFor(Expression<Func<Food, bool>> predicate)

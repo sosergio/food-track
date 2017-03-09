@@ -1,9 +1,12 @@
-import { NgModule }      from '@angular/core';
+import { NgModule, APP_INITIALIZER }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from '@angular/material';
 //import 'hammerjs';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AppConfig } from './app.config';
+import { Http } from '@angular/http';
 
 import { AppComponent }  from './app.component';
 import { FoodView } from './views/food';
@@ -23,6 +26,11 @@ const appRoutes: Routes = [
   }
 ];
 
+//a way of loading settings before loading the rest of the app
+function configServiceFactory (http:Http, config: AppConfig) {
+  return () => config.load();
+}
+
 
 @NgModule({
   imports:      [ 
@@ -41,7 +49,16 @@ const appRoutes: Routes = [
       FtTrackTotalListComponent,
       FtFoodListComponent,
       FoodView,
-      TracksView ],
-  bootstrap:    [ AppComponent ]
+      TracksView ],  
+  bootstrap:    [ AppComponent ],
+  providers:[
+      AppConfig,
+      {
+        provide: APP_INITIALIZER,
+        useFactory: configServiceFactory,
+        deps: [Http, AppConfig],
+        multi: true
+      }
+  ]
 })
 export class AppModule { }

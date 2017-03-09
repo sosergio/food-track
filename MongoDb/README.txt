@@ -13,7 +13,7 @@ To create a collection
 - in command prompt: ">db.createCollection('[Collection_Name]')"
 
 
-USING HEROKU
-download the heroku-cli from here
-https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
 
+USING https://cloud.mongodb.com
+username sosergio@gmail
+password: easy one with extra $

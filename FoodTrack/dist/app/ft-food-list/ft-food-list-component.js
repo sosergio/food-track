@@ -14,7 +14,7 @@ var FtFoodListComponent = (function () {
     function FtFoodListComponent(_foodService) {
         this.updateList = function () {
             //this.food = this.foodService.getAllFood();
-            this.food = this.foodService.getAsync();
+            this.food = this.foodService.getAllFood();
             /*.subscribe(food => {
               this.food = food;
             },

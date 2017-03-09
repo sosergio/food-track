@@ -34,8 +34,9 @@ namespace FoodTrack.Server.NetCore
                     .AllowCredentials() );
             });
 
-            const string connectionString = "mongodb://localhost:27017";
-            IMongoClient mongoClient = new MongoClient(connectionString);
+           // const string connectionString = "mongodb://localhost:27017";
+            const string mongoDbAtlasConnStr = "mongodb://sosergio:penbird12$@ft-cluster-shard-00-00-uh1mk.mongodb.net:27017,ft-cluster-shard-00-01-uh1mk.mongodb.net:27017,ft-cluster-shard-00-02-uh1mk.mongodb.net:27017/FoodTrackDb?ssl=true&replicaSet=ft-cluster-shard-0&authSource=admin";
+            IMongoClient mongoClient = new MongoClient(mongoDbAtlasConnStr);
             IMongoDatabase database = mongoClient.GetDatabase("FoodTrackDb");
             services.AddSingleton<IMongoClient>(mongoClient);
             services.AddSingleton<IMongoDatabase>(database);

@@ -10,35 +10,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var Observable_1 = require('rxjs/Observable');
 // Import RxJs required methods
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
 var app_config_1 = require('../app.config');
-var http_proxy_1 = require('./http-proxy');
-var FoodService = (function () {
-    function FoodService(http, config) {
-        this.http = http;
-        this.config = config;
-        this._http = new http_proxy_1.HttpProxy(http, config);
+var BaseService = (function () {
+    function BaseService(http, config) {
+        this._http = http;
+        this._config = config;
     }
-    FoodService.prototype.getAllFood = function () {
-        return this._http.getAsync("/Food");
+    BaseService.prototype.getAsync = function () {
+        //let bodyString = JSON.stringify(body); // Stringify payload
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
+        return this._http.get(this._config.apiBaseUrl + "/Food")
+            .map(function (response) { return response.json(); })
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
     };
-    FoodService.prototype.getById = function (id) {
-        return this._http.getAsync("/Food/" + id);
-    };
-    FoodService.prototype.addFood = function (food) {
-        return this._http.postAsync("/Food", food);
-    };
-    FoodService.prototype.findByName = function (name) {
-        this.getAllFood()
-            .filter(function (s) { return new RegExp(name, 'gi').test(s.name); });
-    };
-    FoodService = __decorate([
+    BaseService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, app_config_1.AppConfig])
-    ], FoodService);
-    return FoodService;
+    ], BaseService);
+    return BaseService;
 }());
-exports.FoodService = FoodService;
-//# sourceMappingURL=food-service.js.map
+exports.BaseService = BaseService;
+//# sourceMappingURL=base-service.js.map
