@@ -10,6 +10,8 @@ const foodRepository = require('../repository/food-repository');
 const start = (serverSettings) => {
   return new Promise((resolve, reject) => {
 
+    console.log("SERVER START");
+    
     if (!serverSettings.port) {
       reject(new Error('The server must be started with an available port'))
     }

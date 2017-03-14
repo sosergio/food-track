@@ -1,27 +1,28 @@
 var Food     = require('./models/food');
 
+var server = require('./server');
+
 // call the packages we need
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 
-var port = process.env.PORT || 5000;        // set our port
+//var port = process.env.PORT || 5000;        // set our port
 
 app.use(express.static(__dirname + '/public'));
 
-var bodyParser = require('body-parser');
-
-app.use(function(req,res, next){
+/*app.use(function(req,res, next){
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
 
     next();
 });
-
+*/
 // configure app to use bodyParser()
 // this will let us get the data from a POST
+/*var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.json());*/
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -34,7 +35,7 @@ app.get('/', function(request, response) {
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://sosergio:penbird12$@ft-cluster-shard-00-00-uh1mk.mongodb.net:27017,ft-cluster-shard-00-01-uh1mk.mongodb.net:27017,ft-cluster-shard-00-02-uh1mk.mongodb.net:27017/FoodTrackDb?ssl=true&replicaSet=ft-cluster-shard-0&authSource=admin'); // connect to our database
 
-
+server();
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -52,7 +53,7 @@ router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
 });
 
-router.route('/food')
+/*router.route('/food')
   .options(function(req, res) { 
           console.log("OPTIONS /api/Food Request");
           res.json({status:'ok'});
@@ -80,7 +81,9 @@ router.route('/food')
             if (err) res.send(err);
             res.json({ message: 'Food created!' });
         });
-});
+});*/
+
+
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
