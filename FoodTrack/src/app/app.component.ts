@@ -7,10 +7,11 @@ import { FoodTrackService } from './services/food-track-service';
 @Component({
   selector: 'ft-app',
   template: `
-  <ft-header></ft-header>
-  <main class="flex-container">
-  <router-outlet></router-outlet>
-  </main>
+  <div id="wrapper">
+    <ft-header></ft-header>
+    <router-outlet></router-outlet>    
+  </div>
+  <footer>no pixels were harmed in the making.</footer>
   `,
   providers: [
     FoodService,

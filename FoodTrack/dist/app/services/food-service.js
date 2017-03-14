@@ -31,8 +31,8 @@ var FoodService = (function () {
         return this._http.postAsync("/Food", food);
     };
     FoodService.prototype.findByName = function (name) {
-        this.getAllFood()
-            .filter(function (s) { return new RegExp(name, 'gi').test(s.name); });
+        return this.getAllFood()
+            .map(function (all) { return all.filter(function (s) { return new RegExp(name, 'gi').test(s.name); }); });
     };
     FoodService = __decorate([
         core_1.Injectable(), 

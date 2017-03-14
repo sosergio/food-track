@@ -13,7 +13,7 @@ var food_track_service_1 = require('../services/food-track-service');
 var FtTrackListComponent = (function () {
     function FtTrackListComponent(_foodTrackService) {
         this.updateList = function () {
-            this.tracks = this.foodTrackService.getFoodTrackByDay(this.selectedDate);
+            this.foodTrackService.getFoodTrackByDay(this.selectedDate);
         };
         this.foodTrackService = _foodTrackService;
     }
@@ -27,7 +27,7 @@ var FtTrackListComponent = (function () {
     FtTrackListComponent = __decorate([
         core_1.Component({
             selector: 'ft-track-list',
-            template: "<h2>{{selectedDate | date}}</h2> \n   <table>\n   <tr *ngFor=\"let track of tracks\">\n    <td>{{track.id}}</td>\n    <td>{{track.food.name}}</td>\n    <td>{{track.date | date}}<td>\n    <td>{{track.quantityValue}}{{track.unityOfMeasure}}<td>\n  </table>\n  ",
+            template: "<table cellspacing=\"0\">\n   <thead>\n      <tr>\n          <th>Id</th>\n          <th>Name</th>\n          <th>Calories in gr</th>\n          <th>Calories in 1 unit</th>\n      </tr>\n  </thead>\n  <tbody>\n      <tr *ngFor=\"let track of tracks | async\">\n        <td>{{track.id}}</td>\n        <td>{{track.food.name}}</td>\n        <td>{{track.date | date}}<td>\n        <td>{{track.quantityValue}}{{track.unityOfMeasure}}<td>\n      </tr>\n  </tbody>\n  </table>\n  ",
         }), 
         __metadata('design:paramtypes', [food_track_service_1.FoodTrackService])
     ], FtTrackListComponent);

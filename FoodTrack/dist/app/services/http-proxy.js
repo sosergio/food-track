@@ -24,7 +24,7 @@ var HttpProxy = (function () {
         //let bodyString = JSON.stringify(body); // Stringify payload
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
-        return this._http.get(this._config.apiBaseUrl() + resource)
+        return this._http.get(this._config.apiBaseUrl() + resource, options)
             .map(function (response) { return response.json(); })
             .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
     };
@@ -32,7 +32,15 @@ var HttpProxy = (function () {
         //let bodyString = JSON.stringify(body); // Stringify payload
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
-        return this._http.post(this._config.apiBaseUrl() + resource, item)
+        return this._http.post(this._config.apiBaseUrl() + resource, item, options)
+            .map(function (response) { return response.json(); })
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
+    };
+    HttpProxy.prototype.putAsync = function (resource, item) {
+        //let bodyString = JSON.stringify(body); // Stringify payload
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
+        return this._http.put(this._config.apiBaseUrl() + resource, item, options)
             .map(function (response) { return response.json(); })
             .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
     };

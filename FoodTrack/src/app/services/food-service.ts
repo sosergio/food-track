@@ -31,10 +31,9 @@ export class FoodService {
     }
     
    
-    findByName(name:string){
-        this.getAllFood()
-            .filter(s => new RegExp(name, 'gi').test(s.name))
-        
+    findByName(name:string) : Observable<Food[]>{
+        return this.getAllFood()
+            .map(all => all.filter(s => new RegExp(name, 'gi').test(s.name)));
     }
     
    

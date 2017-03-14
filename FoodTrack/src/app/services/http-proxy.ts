@@ -23,7 +23,7 @@ export class HttpProxy {
         let headers  = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options  = new RequestOptions({ headers: headers }); // Create a request option
 
-        return this._http.get(this._config.apiBaseUrl() + resource)
+        return this._http.get(this._config.apiBaseUrl() + resource, options)
                          .map(response => response.json() as T)
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }   
@@ -33,7 +33,17 @@ export class HttpProxy {
         let headers  = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options  = new RequestOptions({ headers: headers }); // Create a request option
 
-        return this._http.post(this._config.apiBaseUrl() + resource, item)
+        return this._http.post(this._config.apiBaseUrl() + resource, item, options)
+                         .map(response => response.json() as Observable<number>)
+                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    }   
+
+     putAsync<T>(resource:string, item:any): Observable<number>{
+        //let bodyString = JSON.stringify(body); // Stringify payload
+        let headers  = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        let options  = new RequestOptions({ headers: headers }); // Create a request option
+
+        return this._http.put(this._config.apiBaseUrl() + resource, item, options)
                          .map(response => response.json() as Observable<number>)
                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
     }   

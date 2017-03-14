@@ -18,14 +18,16 @@ var FtTrackInputComponent = (function () {
     function FtTrackInputComponent(_foodTrackService, _foodService) {
         var _this = this;
         this.filterFood = function (name) {
-            var result = name ? this.foodService.findByName(name) : null;
-            if (result == null || result.length == 0)
-                this.foodSearchSelect.reset();
-            return result;
+            var _this = this;
+            return this.foodService.findByName(name)
+                .subscribe(function (result) {
+                if (result == null || result.length == 0)
+                    _this.foodSearchSelect.reset();
+            });
         };
         this.submitNewFoodTrack = function () {
             this.track.foodId = this.foodSearchSelect.value;
-            this.foodTrackService.addFoodTrack(this.editing);
+            this.foodTrackService.addFoodTrack(this.editing).subscribe();
         };
         this.foodService = _foodService;
         this.foodTrackService = _foodTrackService;
@@ -47,7 +49,7 @@ var FtTrackInputComponent = (function () {
     FtTrackInputComponent = __decorate([
         core_1.Component({
             selector: 'ft-track-input',
-            template: "\n  <form (ngSubmit)='submitNewFoodTrack()'>  \n      <input placeholder=\"Food search\" type='text' [formControl]=\"foodSearchCtrl\" name=\"foodSearchCtrl\" />     \n      <select placeholder=\"choose food\" [hidden]=\"!filteredFood || filteredFood.length == 0\" [formControl]=\"foodSearchSelect\">\n        <option *ngFor=\"let food of filteredFood\" [value]=\"food.id\">{{ food.name }}</option>\n      </select>\n      <input  placeholder=\"Quantity\" type='text' [(ngModel)]=\"track.quantityValue\" name=\"foodTrackQuantity\" />\n      <select placeholder=\"Type\" [(ngModel)]=\"track.unityOfMeasure\" name=\"foodTrackUnityOfMeasure\">\n        <option value=\"gr\" selected=\"selected\">gr.</option>\n        <option value=\"unit\">units</option>\n      </select>\n      <button type='submit'>Add Track</button>\n   </form>{{filteredFood ? filteredFood.length : 'NO'}}",
+            template: "\n  <form (ngSubmit)='submitNewFoodTrack()'>  \n      <div class=\"input-container\">\n          <div class=\"input-group\">\n              <input placeholder=\"Food search\" type='text' [formControl]=\"foodSearchCtrl\" name=\"foodSearchCtrl\" />     \n              <select placeholder=\"choose food\" [hidden]=\"!filteredFood || filteredFood.length == 0\" [formControl]=\"foodSearchSelect\">\n                <option *ngFor=\"let food of filteredFood | async\" [value]=\"food.id\">{{ food.name }}</option>\n              </select>\n          </div>\n          <div class=\"input-group\">\n              <input  placeholder=\"Quantity\" type='text' [(ngModel)]=\"track.quantityValue\" name=\"foodTrackQuantity\" />\n              <select placeholder=\"Type\" [(ngModel)]=\"track.unityOfMeasure\" name=\"foodTrackUnityOfMeasure\">\n                <option value=\"gr\" selected=\"selected\">gr.</option>\n                <option value=\"unit\">units</option>\n              </select>\n          </div>\n      </div>\n      <button type='submit'>Add Track</button>\n   </form>{{filteredFood ? filteredFood.length : 'NO'}}\n   ",
         }), 
         __metadata('design:paramtypes', [food_track_service_1.FoodTrackService, food_service_1.FoodService])
     ], FtTrackInputComponent);

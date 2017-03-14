@@ -3,12 +3,15 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'ft-header',
   template: 
-  `<h1>FootTracker</h1>
-   <div id="menu">
-    <a routerLink="/tracks" routerLinkActive="active">Tracks</a>
-    <a routerLink="/food" routerLinkActive="active">Food</a>
-    <a routerLink="/settings" routerLinkActive="active">Food</a>
-   </div>
+  `<header>
+      <h1>Food Tracker</h1>
+      <nav>
+          <a routerLink="/tracks" routerLinkActive="active">Tracks</a>
+          <a routerLink="/food" routerLinkActive="active">Food</a>
+          <a routerLink="/settings" routerLinkActive="active">Food</a>
+      </nav>
+      <div style="clear:both;"></div>
+  </header>
   `
 })
 export class FtHeaderComponent{

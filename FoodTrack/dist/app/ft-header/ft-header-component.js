@@ -15,7 +15,7 @@ var FtHeaderComponent = (function () {
     FtHeaderComponent = __decorate([
         core_1.Component({
             selector: 'ft-header',
-            template: "<h1>FootTracker</h1>\n   <div id=\"menu\">\n    <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n    <a routerLink=\"/food\" routerLinkActive=\"active\">Food</a>\n    <a routerLink=\"/settings\" routerLinkActive=\"active\">Food</a>\n   </div>\n  "
+            template: "<header>\n      <h1>Food Tracker</h1>\n      <nav>\n          <a routerLink=\"/tracks\" routerLinkActive=\"active\">Tracks</a>\n          <a routerLink=\"/food\" routerLinkActive=\"active\">Food</a>\n          <a routerLink=\"/settings\" routerLinkActive=\"active\">Food</a>\n      </nav>\n      <div style=\"clear:both;\"></div>\n  </header>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], FtHeaderComponent);

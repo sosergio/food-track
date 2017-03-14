@@ -1,15 +1,252 @@
 <html>
 <head>
-    <style></style>
+    <link href="https://fonts.googleapis.com/css?family=Francois+One|Lato:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, minimumscale=1.0, maximum-scale=1.0" />
+    <style>
+        html {
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.682353);
+        }
+        input{
+            font-family: 'Lato', sans-serif;
+        }
+        h1,h2,nav{
+            font-family: 'Francois One', sans-serif;
+        }
+        body{
+            margin:0;
+            padding:0;
+            background-color: rgb(245, 245, 245);
+        }
+        #wrapper{
+            width: 96%;
+            max-width: 920px;
+            margin: auto;
+            padding:0 2%;
+            background-color: white;
+            border: 1px solid rgb(221, 221, 221);
+            border-top:none;
+            border-bottom:none;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        main{
+            display: flex;
+            padding-bottom:50px;
+        }
+        h1{
+            float: left;
+            display: block;
+            color:black;
+            line-height: 50px;
+        }
+        header{
+            
+        }
+        header nav {
+            float: left;
+            margin-top: 40px;
+        }
+        header nav a {
+            display: inline;
+            color:#B7178C;
+            margin-left: 15px;
+            text-decoration:none;
+            
+        }
+        header nav a:hover {
+            border-bottom:2px dotted #B7178C;
+            
+        }
+        header nav a.active {
+            font-weight: bold;
+            text-decoration:none;
+            border-bottom:2px solid #B7178C;
+        }
+        .edit-area{
+            text-align: left;
+            background-color: rgb(245, 245, 245);
+            border-radius:3px;
+            padding: 15px;
+            border: 1px solid rgb(221, 221, 221);
+        }
+        
+        .edit-area input{
+            font-size: 16pt;
+            background-color: transparent;
+            border:none;
+            border-bottom: 2px solid #B7178C;
+            outline: none;
+            color:#000;
+            outline-color: rgb(187, 187, 187);
+            padding: 5px;
+            width: 85%;
+        }
+
+        .edit-area button{
+            background-color:#B7178C;
+            color:white;
+            padding:10px;
+            border: none;
+            font-size: 15pt;
+            border-radius:3px;
+            align-self: flex-end;
+        }
+        .edit-area form{
+            display: flex;
+        }
+        .input-group{
+            margin-top:10px;
+            display: flex;
+        }
+        .input-group input{
+            flex:1;
+            margin-right: 30px;
+        }
+        
+        .list-area{
+            margin-top:30px;
+        }
+        .list-area table {
+            padding:0;
+            margin: auto;
+            width: 100%;
+        }
+        .list-area table thead{
+            text-align: left;
+        }
+        .list-area table td, 
+        .list-area table th{
+            border-bottom:1px solid rgb(221, 221, 221);
+            padding:5px 0;
+        }
+        aside{
+            margin-left:30px;
+            min-width:300px;
+        }
+        
+        h2{
+            border-bottom: 1px solid rgb(221, 221, 221);
+        }
+        aside table{
+            width: 100%
+        }
+        aside table td{
+            border-bottom:1px solid rgb(221, 221, 221);
+            padding:5px 0;
+        }
+        footer{
+            min-height: 150px;
+            padding-top:50px;
+            font-size: 10pt;
+            background-color: #353535;
+            color:white;
+            text-align: center;
+
+        }
+        /* Media Queries */
+        @media screen and (max-width: 940px) {
+            main{
+                flex-direction: column;
+            }
+            aside{
+                margin-top:10px;
+                margin-left:0px;
+                width: 100%;
+            }
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Food Tracker</h1>
-        <nav>
-            <a href="#">Track</a>
-            <a href="#">Food</a>
-        </nav>
-    </header>
-    <main><main>
+    <div id="wrapper">
+        <header>
+            <h1>Food Tracker</h1>
+            <nav>
+                <a class="active" href="#">Track</a>
+                <a href="#">Food</a>
+                <a href="#">Logout</a>
+            </nav>
+            <div style="clear:both;"></div>
+        </header>
+        <main>
+            <div class="column">
+                <div class="edit-area">
+                    <form>
+                        <div class="input-container">
+                            <div class="input-group">
+                                <input placeholder="new food" />
+                            </div>
+                            <div class="input-group">
+                                <input placeholder="cal 100gr" />
+                                <input placeholder="cal in 1" />
+                            </div>
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                <div class="list-area">
+                    <table cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Calories in gr</th>
+                                <th>Calories in 1 unit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Almond</td>
+                                <td>430</td>
+                                <td>23</td>
+                            </tr>
+                            <tr>
+                                <td>Peanut</td>
+                                <td>370</td>
+                                <td>13</td>
+                            </tr>
+                            <tr>
+                                <td>Rasberry</td>
+                                <td>70</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>Porridge</td>
+                                <td>250</td>
+                                <td>120</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <aside class="column">
+                <h2>Totals</h2>
+                <table cellspacing="0">
+                    <tr>
+                        <td>Thursday 23rd</td>
+                        <td>2239Kcal</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday 22nd</td>
+                        <td>2239Kcal</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday 21st</td>
+                        <td>2239Kcal</td>
+                    </tr>
+                    <tr>
+                        <td>Monday 20th</td>
+                        <td>2239Kcal</td>
+                    </tr>
+                </table>
+            </aside>
+        </main>
+        
+    </div>
+    <footer>
+        no pixels were harmed in the making.
+    </footer>
 </body>
 </html>

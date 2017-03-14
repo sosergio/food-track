@@ -14,7 +14,7 @@ var FoodView = (function () {
     }
     FoodView = __decorate([
         core_1.Component({
-            template: "\n    <ft-food-input class=\"area\"></ft-food-input>\n    <ft-food-list class=\"area\"></ft-food-list>\n  "
+            template: "\n    <main>\n        <div class=\"column\">\n            <div class=\"edit-area\">\n                <ft-food-input class=\"area\"></ft-food-input>\n            </div>\n            <div class=\"list-area\">\n                <ft-food-list class=\"area\"></ft-food-list>\n            </div>\n        </div>\n        <aside class=\"column\">\n            <ft-track-total-list class=\"two-cols-right area\"></ft-track-total-list>\n        </aside>\n    <main>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], FoodView);

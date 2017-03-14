@@ -17,7 +17,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'ft-app',
-            template: "\n  <ft-header></ft-header>\n  <main class=\"flex-container\">\n  <router-outlet></router-outlet>\n  </main>\n  ",
+            template: "\n  <div id=\"wrapper\">\n    <ft-header></ft-header>\n    <router-outlet></router-outlet>    \n  </div>\n  <footer>no pixels were harmed in the making.</footer>\n  ",
             providers: [
                 food_service_1.FoodService,
                 food_track_service_1.FoodTrackService

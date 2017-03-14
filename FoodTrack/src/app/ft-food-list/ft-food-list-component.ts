@@ -6,13 +6,23 @@ import { Observable }     from 'rxjs/Observable';
 @Component({
   selector: 'ft-food-list',
   template: 
-  `<h2>All</h2> 
-   <table>
-   <tr *ngFor="let f of food | async">
-    <td>{{f.identifier}}</td>
-    <td>{{f.name}}</td>
-    <td>{{f.caloriesPer100gr}}<td>
-    <td>{{f.caloriesPerUnit}}<td>
+  `<table cellspacing="0">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Calories in gr</th>
+              <th>Calories in 1 unit</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let f of food | async">
+            <td>{{f.identifier}}</td>
+            <td>{{f.name}}</td>
+            <td>{{f.caloriesPer100gr}}</td>
+            <td>{{f.caloriesPerUnit}}</td>
+          </tr>
+      </tbody>
   </table>
   `,
 })
@@ -26,15 +36,6 @@ export class FtFoodListComponent  {
   }
 
   updateList = function(){
-    //this.food = this.foodService.getAllFood();
     this.food = this.foodService.getAllFood();
-          /*.subscribe(food => {
-            this.food = food;
-          }, 
-          err => {
-            // Log errors if any
-            console.log(err);
-          });*/
-                    
   }
 }

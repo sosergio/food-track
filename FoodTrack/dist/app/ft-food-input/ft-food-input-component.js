@@ -14,7 +14,8 @@ var food_1 = require('../services/food');
 var FtFoodInputComponent = (function () {
     function FtFoodInputComponent(_foodService) {
         this.submitNewFood = function () {
-            this.foodService.addFood(this.food);
+            this.foodService.addFood(this.food)
+                .subscribe(function (res) { return console.log(res); });
             this.food = new food_1.Food();
         };
         this.foodService = _foodService;
@@ -23,7 +24,7 @@ var FtFoodInputComponent = (function () {
     FtFoodInputComponent = __decorate([
         core_1.Component({
             selector: 'ft-food-input',
-            template: "<form (ngSubmit)='submitNewFood()'>\n      <input mdInput placeholder=\"Name\" [(ngModel)]=\"food.name\" name=\"newFoodName\">\n      <input mdInput placeholder=\"kCal per 100gr\" [(ngModel)]=\"food.caloriesPer100gr\" name=\"newFoodCaloriesPer100Gr\">\n      <input mdInput placeholder=\"kCal per unit\" [(ngModel)]=\"food.caloriesPerUnit\" name=\"newFoodCaloriesPerUnit\">\n      <button type='submit'>Add</button>\n   </form>\n  ",
+            template: "<form (ngSubmit)='submitNewFood()'>\n      <div class=\"input-container\">\n          <div class=\"input-group\">\n              <input placeholder=\"new food\" [(ngModel)]=\"food.name\" name=\"newFoodName\" />\n          </div>\n          <div class=\"input-group\">\n              <input placeholder=\"cal 100gr\" [(ngModel)]=\"food.caloriesPer100gr\" name=\"newFoodCaloriesPer100Gr\"/>\n              <input placeholder=\"cal in 1\" [(ngModel)]=\"food.caloriesPerUnit\" name=\"newFoodCaloriesPerUnit\"/>\n          </div>\n      </div>\n      <button type=\"submit\">Submit</button>\n    </form>\n  ",
         }), 
         __metadata('design:paramtypes', [food_service_1.FoodService])
     ], FtFoodInputComponent);
